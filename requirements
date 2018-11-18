@@ -1,0 +1,30 @@
+For algorithms that are included in the standard library, it might be OK to know how they
+work, but I don't need to implement them myself, which is great.
+
+Basics:
+
+- Binary exponentation
+- Sieve of Eratosthenes
+- Checking if a number prime
+- Number factorization algorithms
+- Euclid's algorithm (NZD, NZS)
+- Generating combinatory objects - permutations, combinations, variations, etc. (this is under recursion/backtrack, interesting)
+- Branch and bound
+- Sorting - selection, insertion (isn't this garbage?), bubble, counting, quick sort (advanced), merge sort (advanced)
+- Analitical geometry (lines, infinite line segments starting at a single point, intersections, euclidean distances)
+- Greedy algorithms (???)
+- Efficiently searching sorted arrays, including binary searching (advanced)
+
+Advanced:
+
+- Quickselect
+- Solving "classical" (what the fuck is classical?) optimization problems
+    Here they include: Knapsack problem, Longest increasing sequence, Longest common sequence 
+- Graph theory (this is fucking boring, but seems important, so I may want to have this done for qualifications)
+- Btrees and heaps
+- Cross product and dot product of vectors, checking vector orientation
+    I assume by vector orientation they mean how one vector is oriented in relation to another, but I'm not sure
+- Polygon surface area
+- Checking if a point belongs to a polygon
+- Inclusion/exclusion combinatory principle
+- Combinatory game theory - winning/losing positions
