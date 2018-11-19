@@ -1,0 +1,8 @@
+a > b
+gcd(a, 0) = a
+gcd(a, b) = gcd(b, a - b),
+gcd(a, b) = gcd(b, a - n * b), n chosen so that a > n * b,
+gcd(a, b) = gcd(b, a % b)
+
+This is how b keeps getting reduced.
+Once b = 0, a is the solution

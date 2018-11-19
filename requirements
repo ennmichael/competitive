@@ -1,17 +1,24 @@
-For algorithms that are included in the standard library, it might be OK to know how they
-work, but I don't need to implement them myself, which is great.
-
 Basics:
 
-- Binary exponentation
-- Sieve of Eratosthenes
-- Checking if a number prime
-- Number factorization algorithms
-- Euclid's algorithm (NZD, NZS)
+- (ON HOLD) Binary exponentation
+    Okay, but do you really think your implementation of binary exp could be faster
+    than GCC's? I just checked; std::pow in GCC's implementation delegates to a builtin.
+    That means they use special instructions where available. Implementing this is a waste of time.
+    TODO When they publish which version of GCC they'll be using, check the implementation on that version too.
+- Checking if a number is prime - primality test
+- (DONE) Sieve of Eratosthenes
+- Number factorization algorithms (this should be O(sqrt(N))
+- (DONE) Euclid's algorithm
+    NZD - najveći zajednički delilac = GCD - greatest common divisor
+    NZS - najmanji zajednički sadržalac = LCM - lowest common multiplier
+                                        = a * b / gcd(a, b)
+                                        = a / gcd(a, b) * b (This version is better because it avoids integer overflow)
 - Generating combinatory objects - permutations, combinations, variations, etc. (this is under recursion/backtrack, interesting)
 - Branch and bound
-- Sorting - selection, insertion (isn't this garbage?), bubble, counting, quick sort (advanced), merge sort (advanced)
-- Analitical geometry (lines, infinite line segments starting at a single point, intersections, euclidean distances)
+- (ON HOLD) Sorting - selection, insertion (isn't this garbage?), bubble, counting, quick sort (advanced), merge sort (advanced)
+    Again, just use std::sort.
+- Analytic geometry (lines, infinite line segments starting at a single point, intersections, euclidean distances)
+    This is fun
 - Greedy algorithms (???)
 - Efficiently searching sorted arrays, including binary searching (advanced)
 
