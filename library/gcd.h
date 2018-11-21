@@ -22,13 +22,13 @@ namespace Competitive {
     }
 
     template <class Integer>
-    Integer gcd(Integer a, Integer b)
+    Integer gcd(Integer a, Integer b) noexcept
     {
         return euclidean_gcd(a, b);
     }
 
     template <class Integer>
-    Integer lcm(Integer a, Integer b) // Lowest common multiplier
+    Integer lcm(Integer a, Integer b) noexcept // Lowest common multiplier
     {
         return a / gcd(a, b) * b;
     }

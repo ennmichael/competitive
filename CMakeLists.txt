@@ -24,5 +24,5 @@ add_optimized_options(benchmark.cout)
 add_executable(benchmark.printf src/benchmarks/printf.cpp)
 add_optimized_options(benchmark.printf)
 
-add_executable(problem.ringispil src/problems/ringispil.cpp)
-add_debug_options(problem.ringispil)
+add_executable(problem.ringispil problems/ringispil/ringispil.cpp)
+add_optimized_options(problem.ringispil)
