@@ -1,0 +1,2 @@
+For input and output, std::cin and std::cout end up being a tiny bit faster than std::printf and
+std::scanf when std::ios::sync_with_stdio(false) is used.

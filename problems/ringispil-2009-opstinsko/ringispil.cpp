@@ -26,10 +26,10 @@ void rotate(Ringshot& ringshot, unsigned int platform, unsigned int rotations)
                 auto const qmpmi = qmp - i;
                 auto const ipp = i + platform;
                 auto const t = ringshot[ipp][qmp];
-                ringshot[ipp][qmp] = ringshot[p][ipp];
+                ringshot[ipp][qmp] = ringshot[platform][ipp];
                 ringshot[platform][ipp] = ringshot[qmpmi][platform];
                 ringshot[qmpmi][platform] = ringshot[qmp][qmpmi];
-                ringshot[qmp][qmpmi] = t; // ringshot[ipp][qmp]
+                ringshot[qmp][qmpmi] = t;
             }
             break;
         case 2:
@@ -119,6 +119,7 @@ void output(Ringshot const& ringshot)
 
 int main(int, char**)
 {
+    std::ios::sync_with_stdio(false);
     auto ringshot = input_ringshot();
     auto commands = input_commands();
     unsigned int const max_platform = std::round(ringshot.size() / 2.0);

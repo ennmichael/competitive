@@ -15,14 +15,17 @@ macro (add_debug_options TARG)
     target_compile_options(${TARG} PUBLIC -O0 -g)
 endmacro()
 
-add_executable(tests src/tests/test.cpp src/tests/test_gcd.cpp)
+add_executable(tests library/tests/test.cpp library/tests/test_gcd.cpp)
 add_debug_options(tests)
 
-add_executable(benchmark.cout src/benchmarks/cout.cpp)
+add_executable(benchmark.cout library/benchmarks/cout.cpp)
 add_optimized_options(benchmark.cout)
 
-add_executable(benchmark.printf src/benchmarks/printf.cpp)
+add_executable(benchmark.printf library/benchmarks/printf.cpp)
 add_optimized_options(benchmark.printf)
 
-add_executable(problem.ringispil problems/ringispil/ringispil.cpp)
+add_executable(problem.ringispil problems/ringispil-2009-opstinsko/ringispil.cpp)
 add_optimized_options(problem.ringispil)
+
+add_executable(problem.palindromi problems/palindromi-2009-opstinsko/palindromi.cpp)
+add_optimized_options(problem.palindromi)

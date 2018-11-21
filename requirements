@@ -3,7 +3,8 @@ Basics:
 - (ON HOLD) Binary exponentation
     Okay, but do you really think your implementation of binary exp could be faster
     than GCC's? I just checked; std::pow in GCC's implementation delegates to a builtin.
-    That means they use special instructions where available. Implementing this is a waste of time.
+    Which means, not only do they use binary exponentation, they also use special
+    instructions where available. Implementing this is a waste of time.
     TODO When they publish which version of GCC they'll be using, check the implementation on that version too.
 - Checking if a number is prime - primality test
 - (DONE) Sieve of Eratosthenes
