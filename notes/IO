@@ -1,2 +1,11 @@
 For input and output, std::cin and std::cout end up being a tiny bit faster than std::printf and
 std::scanf when std::ios::sync_with_stdio(false) is used.
+
+When printing floating-point values, use:
+
+#include <iomanip>
+std::cout << std::setprecision(N) << std::fixed << value;
+
+to print exactly N decimals (including zeros at the end). Default is std::setprecision(5)
+and std::defaultfloat instead of std::fixed. This is equivalent to std::printf("%f.N"). Not sure if
+using std::printf here may actually be faster - benchmark.

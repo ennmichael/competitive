@@ -1,12 +1,16 @@
 Basics:
 
-- (ON HOLD) Binary exponentation
+- (NEEDS BENCHMARK FAST) Binary exponentation
     Okay, but do you really think your implementation of binary exp could be faster
     than GCC's? I just checked; std::pow in GCC's implementation delegates to a builtin.
     Which means, not only do they use binary exponentation, they also use special
     instructions where available. Implementing this is a waste of time.
     TODO When they publish which version of GCC they'll be using, check the implementation on that version too.
-- Checking if a number is prime - primality test
+    Problem: std::pow doesn't have the overloads I would like it to - only returning float and double,
+    no overload for plain integer types. Try own binary exponentation implementation and benchmark that
+    against std::pow + casts.
+- (DELAYED) Checking if a number is prime - primality test
+    This is turning out to be more difficult than I thought. Leave it for later.
 - (DONE) Sieve of Eratosthenes
 - Number factorization algorithms (this should be O(sqrt(N))
 - (DONE) Euclid's algorithm

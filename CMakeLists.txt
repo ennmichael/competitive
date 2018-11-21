@@ -29,3 +29,6 @@ add_optimized_options(problem.ringispil)
 
 add_executable(problem.palindromi problems/palindromi-2009-opstinsko/palindromi.cpp)
 add_optimized_options(problem.palindromi)
+
+add_executable(problem.kondenzatori problems/kondenzatori-2009-opstinsko/kondenzatori.cpp)
+add_optimized_options(problem.kondenzatori)

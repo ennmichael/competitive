@@ -1,2 +1,5 @@
-Testing cout and printf printing 10'000'000 long long unsigned integers to the terminal proved printf only 2 seconds faster,
-which is small enough to just be chance.
+Testing cout and printf printing 10'000'000 long long unsigned integers to the terminal proved
+printf only 2 seconds faster, which is small enough to just be chance. Use std::cin and
+std::cout with std::ios::sync_with_stdio(false).
+
+What's the fastest way to generate random numbers?
