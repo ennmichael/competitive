@@ -7,5 +7,5 @@ When printing floating-point values, use:
 std::cout << std::setprecision(N) << std::fixed << value;
 
 to print exactly N decimals (including zeros at the end). Default is std::setprecision(5)
-and std::defaultfloat instead of std::fixed. This is equivalent to std::printf("%f.N"). Not sure if
-using std::printf here may actually be faster - benchmark.
+and std::defaultfloat instead of std::fixed. This is equivalent to std::printf("%f.N").
+Not sure if using std::printf here may actually be faster - benchmark.
