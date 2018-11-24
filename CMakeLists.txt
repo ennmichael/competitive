@@ -15,7 +15,7 @@ macro (add_debug_options TARG)
     target_compile_options(${TARG} PUBLIC -O0 -g)
 endmacro()
 
-add_executable(tests library/tests/test.cpp library/tests/test_gcd.cpp library/tests/test_breadth_first_search.cpp)
+add_executable(tests library/tests/test.cpp library/tests/test_gcd.cpp library/tests/test_breadth_first_search.cpp library/tests/test_a_star.cpp)
 add_debug_options(tests)
 
 add_executable(benchmark_cout library/benchmarks/cout.cpp)

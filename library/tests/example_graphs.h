@@ -6,16 +6,33 @@
 using namespace Competitive;
 
 struct ExampleGraph {
+    using HeuristicFunction = std::function<int(Graph<int> const&, std::size_t, std::size_t)>;
+
     Graph<int> graph;
     int start;
     int end;
+    HeuristicFunction heuristic_function;
     Path nonheuristic_path;
     Path heuristic_path;
 };
 
-inline int example_heuristic(Graph<int> const& graph, std::size_t from, std::size_t to)
+inline float heuristic_function_1(Graph<int> const&, std::size_t from, std::size_t to)
 {
-    return graph.nodes[from] ^ graph.nodes[to];
+    if (to != 9)
+        throw std::runtime_error {"Incorrect to argument"};
+    switch (from)
+    {
+        case 0: return 11.66f;
+        case 1: return 11.18f;
+        case 2: return 10.77f;
+        case 3: return 10.44f;
+        case 4: return 4.12f;
+        case 5: return 10.04f;
+        case 6: return 2.23f;
+        case 7: return 1.73f;
+        case 8: return 1.0f;
+    }
+    throw std::runtime_error {"Incorrect from argument"};
 }
 
 inline ExampleGraph solvable_graph_1()
@@ -34,9 +51,26 @@ inline ExampleGraph solvable_graph_1()
     graph.arcs.insert({8, {7, 9}});
     return {
         graph, 0, 9,
+        heuristic_function_1,
         {9, 8, 4, 5, 3, 2, 1, 0},
-        {} // XXX
+        {9, 8, 4, 5, 3, 2, 1, 0}
     };
+}
+
+inline float heuristic_function_2(Graph<int> const&, std::size_t from, std::size_t to)
+{
+    if (to != 6)
+        throw std::runtime_error {"Incorrect to argument"};
+    switch (from)
+    {
+        case 0: return 4.0f;
+        case 1: return 5.65f;
+        case 2: return 2.0f;
+        case 3: return 1.0f;
+        case 4: return 3.0f;
+        case 5: return 5.0f;
+    }
+    throw std::runtime_error {"Incorrect from argument"};
 }
 
 inline ExampleGraph solvable_graph_2()
@@ -53,8 +87,9 @@ inline ExampleGraph solvable_graph_2()
     graph.arcs.insert({6, {5}});
     return {
         graph, 0, 6,
+        heuristic_function_2,
         {6, 3, 2, 1, 0},
-        {} // XXX
+        {6, 3, 2, 4, 0}
     };
 }
 
@@ -73,8 +108,8 @@ inline ExampleGraph unsolvable_graph_1()
     graph.arcs.insert({8, {7, 9}});
     return {
         graph, 0, 9,
-        {},
-        {}
+        heuristic_function_1,
+        {}, {}
     };
 }
 
@@ -91,8 +126,8 @@ inline ExampleGraph unsolvable_graph_2()
     graph.arcs.insert({6, {5}});
     return {
         graph, 0, 6,
-        {},
-        {}
+        heuristic_function_2,
+        {}, {}
     };
 }
 

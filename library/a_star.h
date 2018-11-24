@@ -1,6 +1,7 @@
 #pragma once
 
 #include "graph.h"
+#include "common.h"
 #include <queue>
 #include <unordered_set>
 #include <algorithm>
@@ -8,8 +9,6 @@
 
 namespace Competitive {
 namespace AStar {
-
-    // TODO Change the word priority -> heuristic (because that's what it really is)
 
     template <class Graph, class HeuristicFunction>
     Path find_path(Graph const& graph, std::size_t start, std::size_t end, HeuristicFunction const& h)
@@ -38,23 +37,30 @@ namespace AStar {
         OpenNodes open_nodes {start};
         VisitedNodes visited_nodes;
         Breadcrumbs breadcrumbs;
-        HeuristicsComparer comparer;
+        HeuristicsComparer comparer {Heuristics {{start, 0}}};
 
         while (!open_nodes.empty())
         {
-            auto const current_node = std::pop_heap(open_nodes);
+            std::pop_heap(open_nodes.begin(), open_nodes.end());
+            auto const current_node = open_nodes.back();
+            open_nodes.pop_back();
             if (current_node == end)
-                return follow_breadcrumbs(breadcrumbs);
+                return follow_breadcrumbs(breadcrumbs, start, end);
+            auto const current_node_heuristic = comparer.heuristics.at(current_node);
             for (auto const neighbour : graph.neighbours(current_node))
             {
-                auto const heuristic = h(graph, start, current_node);
-                auto const active_heuristic = (comparer.heuristics.count(neighbour)) ?
-                    comparer.heuristics.at(neighbour) : std::numeric_limits<std::size_t>::max();
-                if (heuristic < active_heuristic)
+                auto const new_heuristic = current_node_heuristic + h(graph, current_node, end);
+                if (!comparer.heuristics.count(neighbour))
                 {
-                    comparer.heuristics.insert_or_assign(neighbour, heuristic);
+                    comparer.heuristics.insert({neighbour, new_heuristic});
                     std::make_heap(open_nodes.begin(), open_nodes.end(), comparer);
-                    breadcrumbs.insert_or_assign(neighbour, current_node);
+                    breadcrumbs.insert({neighbour, current_node});
+                }
+                else if (new_heuristic < comparer.heuristics.at(neighbour))
+                {
+                    comparer.heuristics.at(neighbour) = new_heuristic;
+                    std::make_heap(open_nodes.begin(), open_nodes.end(), comparer);
+                    breadcrumbs.at(neighbour) = current_node;
                 }
                 if (visited_nodes.find(neighbour) == visited_nodes.end())
                 {
