@@ -1,4 +1,3 @@
 - Benchmark printf vs iostreams for printing formatted floats
 - Benchmark own binary power for integers vs std::pow + cast
 - A-Star
-- Check the stirling factorial against real factorials

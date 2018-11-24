@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.0.2)
 project(competitve)
 
 macro (add_options TARG)
-    target_compile_options(${TARG} PUBLIC -std=c++14 -Wall -Wextra)
+    target_compile_options(${TARG} PUBLIC -std=c++14 -Wall -Wextra -Wpedantic)
 endmacro()
 
 macro (add_optimized_options TARG)
@@ -15,7 +15,7 @@ macro (add_debug_options TARG)
     target_compile_options(${TARG} PUBLIC -O0 -g)
 endmacro()
 
-add_executable(tests library/tests/test.cpp library/tests/test_gcd.cpp)
+add_executable(tests library/tests/test.cpp library/tests/test_gcd.cpp library/tests/test_breadth_first_search.cpp)
 add_debug_options(tests)
 
 add_executable(benchmark_cout library/benchmarks/cout.cpp)
