@@ -33,6 +33,12 @@ add_optimized_options(problem_palindromi)
 add_executable(problem_kondenzatori problems/kondenzatori-2009-opstinsko/kondenzatori.cpp)
 add_optimized_options(problem_kondenzatori)
 
+add_executable(problem_ciode problems/ciode-2009-opstinsko/ciode.cpp)
+add_debug_options(problem_ciode)
+
+add_executable(problem_rubik problems/rubik-2009-opstinsko/rubik.cpp)
+add_debug_options(problem_rubik)
+
 add_executable(check_stirling library/check_stirling.cpp)
 add_optimized_options(check_stirling)
 
