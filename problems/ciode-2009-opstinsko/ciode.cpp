@@ -39,7 +39,7 @@ unsigned long min_pins_required(unsigned long papers_to_hang, unsigned long pill
     auto const columns = static_cast<unsigned long>(std::sqrt(papers_to_hang));
     if (columns < pillar_width)
     {
-        return std::min(cubic_pins_required(papers_to_hang, columns, pillar_width),
+        return std::min(cubic_pins_required(papers_to_hang, columns),
                         wraparound_pins_required(papers_to_hang, pillar_width));
     }
     else

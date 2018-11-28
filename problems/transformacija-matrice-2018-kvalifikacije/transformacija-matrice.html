@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Petlja</title>
+        <!-- Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+<link href='https://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+<link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ"
+      crossorigin="anonymous">
+
+
+    <link rel="stylesheet" href="/lib/bootstrap4/css/bootstrap.css" />
+    <link rel="stylesheet" href="/css/swiper.min.css" />
+    <link rel="stylesheet" href="/css/petlja.min.css" />
+    <link rel="stylesheet" href="/css/site.min.css?v=cpYI8XqH-g1gK59Xj0KDyS_J6lLRsSCOYBCT-lcdeNk" />
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/styles/shCore.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/styles/shThemeDefault.min.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css" />
+
+    <link href="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+    
+    
+        <link rel="stylesheet" href="/css/course.min.css?v=XG81PxXnN1FlcX9DGbV99_405Lm1mlkeWGG4SonPbNM" />
+        <link rel="stylesheet" href="/css/problem.min.css?v=10F3EWN1aMfJw3Gt5--cUDYujc4vuo0_N8pY-fsae2I" />
+    
+
+    
+    <script type="text/javascript">
+	
+    var appInsights=window.appInsights||function(a){
+        function b(a){c[a]=function(){var b=arguments;c.queue.push(function(){c[a].apply(c,b)})}}var c={config:a},d=document,e=window;setTimeout(function(){var b=d.createElement("script");b.src=a.url||"https://az416426.vo.msecnd.net/scripts/a/ai.0.js",d.getElementsByTagName("script")[0].parentNode.appendChild(b)});try{c.cookie=d.cookie}catch(a){}c.queue=[];for(var f=["Event","Exception","Metric","PageView","Trace","Dependency"];f.length;)b("track"+f.pop());if(b("setAuthenticatedUserContext"),b("clearAuthenticatedUserContext"),b("startTrackEvent"),b("stopTrackEvent"),b("startTrackPage"),b("stopTrackPage"),b("flush"),!a.disableExceptionTracking){f="onerror",b("_"+f);var g=e[f];e[f]=function(a,b,d,e,h){var i=g&&g(a,b,d,e,h);return!0!==i&&c["_"+f](a,b,d,e,h),i}}return c
+    }({
+        instrumentationKey: 'ef1fe518-698c-481c-93c0-dcecc76b315c'
+    });
+
+    window.appInsights=appInsights,appInsights.queue&&0===appInsights.queue.length&&appInsights.trackPageView();
+	
+    </script>
+</head>
+    <body>
+        
+    <div style="display:none">
+    $$
+    \newcommand{\floor}[1]{\left\lfloor{#1}\right\rfloor}
+    \newcommand{\ceil}[1]{\left\lceil{#1}\right\rceil}
+    \newcommand{\mod}{\,\mathrm{mod}\,}
+    \newcommand{\div}{\,\mathrm{div}\,}
+    \newcommand{\metar}{\,\mathrm{m}}
+    \newcommand{\cm}{\,\mathrm{cm}}
+    \newcommand{\dm}{\,\mathrm{dm}}
+    \newcommand{\litar}{\,\mathrm{l}}
+    \newcommand{\km}{\,\mathrm{km}}
+    \newcommand{\s}{\,\mathrm{s}}
+    \newcommand{\h}{\,\mathrm{h}}
+    \newcommand{\minut}{\,\mathrm{min}}
+    \newcommand{\kmh}{\,\mathrm{\frac{km}{h}}}
+    \newcommand{\ms}{\,\mathrm{\frac{m}{s}}}
+    \newcommand{\mss}{\,\mathrm{\frac{m}{s^2}}}
+    \newcommand{\mmin}{\,\mathrm{\frac{m}{min}}}
+    \newcommand{\smin}{\,\mathrm{\frac{s}{min}}}
+    $$
+</div>
+
+        
+
+<div class="wrapper">
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light mt-2">
+            <a class="navbar-brand mr-4" href="/"><img src="/images/img/logo.png" width="150px" height="auto" alt="petlja.org"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+            <div class="collapse navbar-collapse mt-2" id="navbarNavDropdown">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item pr-2"> <a class="nav-link" href="/skola">Škola</a> </li>
+                    <li class="nav-item pr-2"> <a class="nav-link" href="/takmicenja">Takmičenja</a> </li>
+                    <li class="nav-item pr-2"> <a class="nav-link" href="https://algora.petlja.org">Forum</a> </li>
+                    <li class="nav-item pr-2"> <a class="nav-link" href="/vesti">Vesti</a> </li>
+                    <li class="nav-item pr-2"> <a class="nav-link" href="/biblioteka">Biblioteka</a> </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> O nama </a>
+                        <div class="dropdown-menu shadow-lg" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="/petlja/fondacija">Fondacija Petlja</a>
+                            <a class="dropdown-item" href="/petlja/tim">Tim petlje</a>
+                            <a class="dropdown-item" href="/petlja/podrska">Podrška</a>
+                        </div>
+                    </li>
+                </ul>
+
+                
+    <button type="button" class="btn btn-outline-success my-2 my-sm-0 mt-3" data-toggle="modal" data-target="#loginModal" data-whatever="login">Uloguj se</button>
+
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="loginModalLabel">Petlja.org</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post" id="login-nav" action="/Account/Login?returnurl=%2Fbiblioteka%2Fr%2Fproblemi%2Ftakmicenja-srednje-skole%2F02_transformacija_matrice">
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">E-mail adresa</label>
+                        <input type="text" class="form-control" id="username" name="LoginViewModel.UserNameOrEmail" value="" />
+                        <span class="text-danger field-validation-valid" data-valmsg-for="LoginViewModel.UserNameOrEmail" data-valmsg-replace="true"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Lozinka</label>
+                        <input type="password" class="form-control" id="password" name="LoginViewModel.Password">
+                        <span class="text-danger field-validation-valid" data-valmsg-for="LoginViewModel.Password" data-valmsg-replace="true"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success mt-2 font-weight-bold">Uloguj se</button>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" data-val="true" data-val-required="The RememberMe field is required." id="LoginViewModel_RememberMe" name="LoginViewModel.RememberMe" value="true" /> Zapamti me
+                        </label>
+                    </div>
+                    <p class="d-block mt-2"><a href="/Account/ForgotPassword">Zaboravili ste lozinku?</a></p>
+                    <p class="d-block mt-2"><a href="/Account/Register">Napravi novi nalog</a></p>
+                <input name="__RequestVerificationToken" type="hidden" value="CfDJ8ITUPQllzxpAgPTgXiK40jWWnUnB6Tv2Bup-WFueyV6iXpN1ijkEMDuocWojbKLRf7ZefzLrQgDJCnSiGWGj0iN1L6CIcQIs9Mzk7GYSxec549X_CKBt7cM4jpXylN3oGscT84HhhGPptwTUpRuFXyo" /><input name="LoginViewModel.RememberMe" type="hidden" value="false" /></form>
+            </div>
+            <div class="modal-footer d-flex flex-column">
+                <div class="col-12 text-center">Poveži se</div>
+                <div class="col-12">
+                    <form method="post" class="form-horizontal" action="/Account/ExternalLogin">
+                        <div class="form-group row">
+                            <button type="submit" name="provider" value="Facebook" class="btn btn-facebook btn-cent mt-1">
+                                <i class="fab fa-facebook-f" aria-hidden="true"></i>   FACEBOOK
+                            </button>
+                        </div>
+                    <input name="__RequestVerificationToken" type="hidden" value="CfDJ8ITUPQllzxpAgPTgXiK40jWWnUnB6Tv2Bup-WFueyV6iXpN1ijkEMDuocWojbKLRf7ZefzLrQgDJCnSiGWGj0iN1L6CIcQIs9Mzk7GYSxec549X_CKBt7cM4jpXylN3oGscT84HhhGPptwTUpRuFXyo" /></form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+            </div>
+        </nav>
+    </header>
+</div>
+
+
+
+
+<div id="reportModal" class="modalBackground">
+    <div id="reportProblemModal" class="reportProblemModal">
+        <h2> Prijavi problem </h2>
+        <hr />
+        <h1>  Obeleži sve katergorije koje odgovaraju problemu</h1>
+        <label class="problemCheckboxes">
+            <p  >Problem sa prikazivanjem <span>Stranica ili neki deo stranice se ne prekizuje očekivano</span></p>
+            <input type="checkbox" name="ptype1" value="problem-prikazivanje" onclick="javascript:markProblem('problem-sa-prikazivanjem')">
+            <span class="checkmarkProblem" id="ptype1"></span>
+        </label>
+        <label class="problemCheckboxes">
+            <p>Problemi sa zadatkom <span> Neispravni primeri, neočekivana rešenja, postavka...</span></p>
+            <input type="checkbox" name="ptype2" value="problem-zadatak"  onclick="javascript:markProblem('problem-sa-zadatakom')">
+            <span class="checkmarkProblem" id="ptype2"></span>
+        </label>
+        <label class="problemCheckboxes">
+            <p>Problemi sa grader-om <span> Dugo čekam na rezultat, ne dobijam rezultat...</span></p>
+            <input type="checkbox" name="ptype3" value="problem-grader" onclick="javascript:markProblem('problem-sa-graderom')">
+            <span class="checkmarkProblem" id="ptype3"></span>
+        </label>
+        <label class="problemCheckboxes">
+            <p>Problemi sa sadržajem <span> Greška u tekstu, neispravna formula...</span></p>
+            <input type="checkbox" name="ptype4" value="problem-sadrzaj" onclick="javascript:markProblem('problem-sa-sadrzajem')">
+            <span class="checkmarkProblem" id="ptype4"></span>
+        </label>
+        <label class="problemCheckboxes">
+            <p>Ostalo <span> Ne mogu da se logujem, problem sa kontrolnom tablom...</span></p>
+            <input type="checkbox" name="ptype5" value="problem-ostalo" onclick="javascript:markProblem('\'to-vam-je-nesto-u-kodu\'')">
+            <span class="checkmarkProblem" id="ptype5"></span>
+        </label>
+        <div class="problemInfo">
+            <h3> Jos detalja - opišite nam problem </h3>
+            <textarea rows="4" cols="85" placeholder="Opišite nam detaljno šta se dešava. Ili kako da reprodukujemo problem?" id="problemDescription"></textarea>
+            <br />
+        </div>
+        <div class="alert alert-danger problem-alert" role="alert" style="display: none;" id="validation-alert">
+            This is a danger alert—check it out!
+        </div>
+        <button type="button" class="btn btn-success" onclick="javascript:sendProblemReport()">Prijavi</button>
+        <button type="button" class="btn btn-light" onclick="javascript:closeProblemModal()">Odustani</button>
+    </div>
+
+    <div id="success-report-modal" class="success-report-modal">
+        Uspešno ste prijavili problem! <br/>
+        Status problema i sve dodatne informacije možete pratiti klikom na <b> <a id="link-to-problem" href="">link</a> </b>
+
+        <button type="button" onclick="javascript:closeProblemModal()" class="btn btn-success">OK</button>
+    </div>
+
+    <div id="failed-report-modal" class="success-report-modal">
+        Na žalost nismo trenutno u mogućnosti da obradimo Vaš zahtev. <br />
+        Molimo Vas da pokušate kasnije.
+        <button type="button" onclick="javascript:closeProblemModal()" class="btn btn-success">OK</button>
+    </div>
+</div> 
+        
+       
+        
+
+<div id="dialog-score-details" class="modal col-md-12">
+
+</div>
+<div class="wrapper">
+    <div class="row mt-3">
+            <div class="col-md-3">
+                <div class="panel-group" id="accordion">
+                    <div class="course-box">
+                        <div class="course-content">
+                            <h4 class="course-title">
+                                    <div class="bubblebeelogo">
+                                        <img src="https://petljamediastorage.blob.core.windows.net/root/Media/Default/Kursevi/takmicenja-srednje-skole/takprog.png" />
+                                    </div>
+                                <span style="color: #18bc9c;">Takmi&#x10D;enja za srednjo&#x161;kolce od 2017. godine</span>
+                            </h4>
+                        </div>
+                    </div>
+
+                    <div class="card" id="treecontainer">
+                        <small>
+                            <div id="tree"></div>
+                        </small>
+                    </div>
+                </div>
+                <div id="infoPanel" class="col-md-12 mt-4">
+
+                </div>
+            </div>
+        <div class="col-md-9">
+                <nav class="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/biblioteka">Biblioteka</a></li>
+                        <li class="breadcrumb-item"><a href="/biblioteka/r/kursevi/takmicenja-srednje-skole">Takmi&#x10D;enja za srednjo&#x161;kolce od 2017. godine</a></li>
+                                <li class="breadcrumb-item"><a>2018</a></li>
+                                <li class="breadcrumb-item"><a href=/biblioteka/r/lekcije/takmicenja-srednje-skole/2018/kval1>Prva runda kvalifikacija 2018</a></li>
+                        <li class="breadcrumb-item active">Transformacija matrice</li>
+                    </ol>
+                </nav>
+
+            <div class="col-md-12">
+
+                <div class="col-md-12 course-box">
+                    <div class="col-md-12 course-content">
+                        <div class="col-md-12 problemtitle">
+                            <h2>
+                                Transformacija matrice
+                            </h2>
+
+
+                            <div class="authors-content ">
+                                <table class="float-left">
+                                    <tbody>
+                                        <tr class="">
+                                            <td><b>Autor zadatka</b></td>
+                                            <td class="pl-1">Aleksa Plav&#x161;i&#x107;</td>
+                                        </tr>
+                                        <tr class="">
+                                            <td><b>Saradnici</b></td>
+                                            <td class="pl-1">Slobodan Mitrovi&#x107; (tester)</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <table class="float-right">
+                                    <tbody>
+                                        <tr class="">
+                                            <td><b>Autor rešenja zadatka</b></td>
+                                            <td class="pl-1">Du&#x161;an Zdravkovi&#x107;</td>
+                                        </tr>
+                                        <tr class="">
+                                            <td><b>Izvor zadatka</b></td>
+                                            <td class="pl-1">Nikola Milosavljevi&#x107;</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="coltitle">vreme</th>
+                                        <th class="coltitle">memorija</th>
+                                        <th class="coltitle">ulaz</th>
+                                        <th class="coltitle">izlaz</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="coltitle">2 s</td>
+                                        <td class="coltitle">128 Mb</td>
+                                        <td class="coltitle">standardni ulaz</td>
+                                        <td class="coltitle">standardni izlaz</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                            <div class="col-md-12 problemtext force-font">
+                                <p>Nakon duge igre sa brojevima, Mabu i Džo su rešili da promene temu njihove zabave. Sada su na red došle matrice! Mabu je napisao na papiru kvadratnu matricu <script type="math/tex">% <![CDATA[
+A\ %]]></script>, dok je Džo napisao kvadratnu matricu <script type="math/tex">% <![CDATA[
+B\ %]]></script>. Obe kvadratne matrice su iste dimenzije i ona iznosi <script type="math/tex">% <![CDATA[
+n\ %]]></script> ( svaka matrica ima tačno <script type="math/tex">% <![CDATA[
+n\ %]]></script> vrsta i <script type="math/tex">% <![CDATA[
+n\ %]]></script> kolona ).</p>
+<p>Kada su napisali matrice na papiru, Mabu je odjednom poželeo da promeni svoju matricu u onu koju je Džo napisao ( želeo je da transformiše matricu <script type="math/tex">% <![CDATA[
+A\ %]]></script> u matricu <script type="math/tex">% <![CDATA[
+B\ %]]></script> ). Za ovaj poduhvat Mabu sme da koristi sledeće dve operacije proizvoljan broj puta u proizvoljnom redosledu:</p>
+<p><script type="math/tex">% <![CDATA[
+1.\ %]]></script> Promena vrednosti jednog elementa u matrici <script type="math/tex">% <![CDATA[
+A\ %]]></script> - element može da se zameni proizvoljnom vrednošću</p>
+<p><script type="math/tex">% <![CDATA[
+2.\ %]]></script> Rotacija matrice <script type="math/tex">% <![CDATA[
+A\ %]]></script> za <script type="math/tex">% <![CDATA[
+90\ %]]></script> stepeni u desno.</p>
+<p>Mabua interesuje minimalan broj operacija koje mora da izvrši na matrici <script type="math/tex">% <![CDATA[
+A\ %]]></script> kako bi dobio matricu <script type="math/tex">% <![CDATA[
+B\ %]]></script>.</p>
+<h2>Opis ulaza</h2>
+<p>Prva linija standardnog ulaza sadrži prirodan broj <script type="math/tex">% <![CDATA[
+n\ %]]></script> , dimenziju kvadratnih matrice koje su napisali Mabu i Džo.</p>
+<p>Sledećih <script type="math/tex">% <![CDATA[
+n\ %]]></script> linija standarnog ulaza sadrži po <script type="math/tex">% <![CDATA[
+n\ %]]></script> prirodnih brojeva koji predstaljaju matricu <script type="math/tex">% <![CDATA[
+A\ %]]></script>.</p>
+<p>Poslednjih <script type="math/tex">% <![CDATA[
+n\ %]]></script> linija standarnog ulaza sadrži po <script type="math/tex">% <![CDATA[
+n\ %]]></script> prirodnih brojeva koji predstaljaju matricu <script type="math/tex">% <![CDATA[
+B\ %]]></script>.</p>
+<h2>Opis izlaza</h2>
+<p>U jedinoj liniji standardnog izlaza ispisati minimalan broj operacija potrebnih da se matrica <script type="math/tex">% <![CDATA[
+A\ %]]></script> transformiše u matricu <script type="math/tex">% <![CDATA[
+B\ %]]></script>.</p>
+<h2>Primer <script type="math/tex">% <![CDATA[
+1\ %]]></script></h2>
+<h3>Ulaz</h3>
+<pre>2
+1 2
+3 8
+6 1
+8 5
+</pre>
+<h3>Izlaz</h3>
+<pre>3
+</pre>
+<h2>Primer <script type="math/tex">% <![CDATA[
+2\ %]]></script></h2>
+<h3>Ulaz</h3>
+<pre>1
+5
+5
+</pre>
+<h3>Izlaz</h3>
+<pre>0
+</pre>
+<h2>Objašnjenje primera</h2>
+<p>U prvom primeru matricu <script type="math/tex">% <![CDATA[
+A\ %]]></script> možemo transformisati u matricu <script type="math/tex">% <![CDATA[
+B\ %]]></script> sa najmanje <script type="math/tex">% <![CDATA[
+3\ %]]></script> koraka.</p>
+<p><script type="math/tex">% <![CDATA[
+1.\ %]]></script> Promena vrednosti polja (<script type="math/tex">% <![CDATA[
+2\ %]]></script>, <script type="math/tex">% <![CDATA[
+1\ %]]></script>) , <script type="math/tex">% <![CDATA[
+A_{2,1} = 6\ %]]></script></p>
+<p><script type="math/tex">% <![CDATA[
+2.\ %]]></script> Rotacija matrice za <script type="math/tex">% <![CDATA[
+90\ %]]></script> stepeni u desno</p>
+<p><script type="math/tex">% <![CDATA[
+3.\ %]]></script>  Promena vrednosti polja (<script type="math/tex">% <![CDATA[
+2\ %]]></script>, <script type="math/tex">% <![CDATA[
+2\ %]]></script>) , <script type="math/tex">% <![CDATA[
+A_{2,2} = 5\ %]]></script></p>
+<p>U drugom primeru matrice <script type="math/tex">% <![CDATA[
+A\ %]]></script> i <script type="math/tex">% <![CDATA[
+B\ %]]></script> imaju samo po jedan element i on ima vrednost <script type="math/tex">% <![CDATA[
+5\ %]]></script> u obe matrice. Nije potrebno izvršiti neku operaciju, tako da je rešenje <script type="math/tex">% <![CDATA[
+0\ %]]></script></p>
+<h2>Ograničenja</h2>
+<p><script type="math/tex">% <![CDATA[
+ 1 \leq n \leq 1000\ %]]></script></p>
+<p><script type="math/tex">% <![CDATA[
+ 1 \leq A_{i,j}, B_{i,j} \leq 10^9 \ %]]></script></p>
+<p>Test primeri su podeljeni u <script type="math/tex">% <![CDATA[
+4\ %]]></script> disjunktne grupe :</p>
+<p>U test primerima vrednim <script type="math/tex">% <![CDATA[
+20\ %]]></script> poena važiće ograničenje <script type="math/tex">% <![CDATA[
+n = 2\ %]]></script>.</p>
+<p>U test primerima vrednim <script type="math/tex">% <![CDATA[
+20\ %]]></script> poena za optimalno rešenje biće potrebne samo operacije prvog tipa.</p>
+<p>U test primerima vrednim <script type="math/tex">% <![CDATA[
+30\ %]]></script> poena važiće ograničenje <script type="math/tex">% <![CDATA[
+1 \leq n \leq 50\ %]]></script>.</p>
+<p>U test primerima vrednim <script type="math/tex">% <![CDATA[
+30\ %]]></script> poena nema dodatnih ograničenja.</p>
+                            </div>
+                                                                                                                                                                    </div>
+                </div>
+
+                <div class="col-md-12 course-box">
+                    <div class="col-md-12 course-content">
+                            <p>Morate biti <a href="/Account/Login?returnurl=%2Fbiblioteka%2Fr%2Fproblemi%2Ftakmicenja-srednje-skole%2F02_transformacija_matrice">ulogovani</a> kako biste poslali zadatak na evaluaciju.</p>
+                    </div>
+                </div>
+
+
+
+
+
+
+                    <div class="col-md-12">
+                        <div class="pager">
+                                <a class="btn btn-success" href="/biblioteka/r/problemi/takmicenja-srednje-skole/01_prva_cifra">Prethodni</a>
+                                                            <a class="btn btn-success" href="/biblioteka/r/problemi/takmicenja-srednje-skole/03_prodavnice">Sledeći</a>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        
+<footer>
+    <div class="footer-top-bar container col-12 mt-5">
+        <div class="wrapper">
+            <div class="row">
+                <div class="social-network-icons col-12 text-left">
+                    <a href="https://www.facebook.com/Petlja.org/">
+                        <i class="fab fa-facebook-square ml-2 p-2"></i>
+                    </a>
+                    <a href="https://twitter.com/fondacijapetlja">
+                        <i class="fab fa-twitter-square p-2"></i>
+                    </a>
+                    <a href="https://www.youtube.com/channel/UCW1aYWf6TPaVROfu4NyMWOQ">
+                        <i class="fab fa-youtube-square p-2"></i>
+                    </a>
+                    <a href="https://www.github.com/Petlja">
+                        <i class="fab fa-github-square p-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer container col-12">
+        <div class="wrapper">
+            <div class="row">
+                <div class="col-xl-2 col-md-4 mt-5 d-none d-lg-block d-xl-block">
+                    <ul class="list-unstyled light-gray p-3">
+                        <li class="footer-list-title font-weight-bold mb-2">škola</li>
+                        <li class="footer-list-item">
+                            <a href="/skola/osnovna">Osnovna škola</a>
+                        </li>
+                        <li class="footer-list-item">
+                            <a href="/skola/gimnazija">Gimnazija</a>
+                        </li>
+                        <li class="footer-list-item">
+                            <a href="https://petljamediastorage.blob.core.windows.net/root/Media/Default/Help/Nastavnik.pdf">Uputstvo za nastavnike</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-xl-2 col-md-4 mt-5 d-none d-lg-block d-xl-block">
+                    <ul class="list-unstyled light-gray p-3">
+                        <li class="footer-list-title font-weight-bold mb-2">takmičenja</li>
+                        <li class="footer-list-item">
+                            <a href="https://takprog.petlja.org/srednjaskola">Takmičenja za srednjoškolce</a>
+                        </li>
+                        <li class="footer-list-item">
+                            <a href="http://bubblecup.petlja.org/">Bubble Cup</a>
+                        </li>
+                        <li class="footer-list-item">
+                            <a href="https://dabar.edu.rs/">Takmičenje Dabar</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-xl-2 col-md-4 mt-5 d-none d-lg-block d-xl-block">
+                    <ul class="list-unstyled light-gray p-3">
+                        <li class="footer-list-title font-weight-bold mb-2">forum</li>
+                        <li class="footer-list-item">
+                            <a href="https://algora.petlja.org/c/pitanja">Pitanja i problemi</a>
+                        </li>
+                        <li class="footer-list-item">
+                            <a href="https://algora.petlja.org/c/takmicenja">Takmičenja</a>
+                        </li>
+                        <li class="footer-list-item">
+                            <a href="https://algora.petlja.org/c/algoritmi-i-strukture-podataka">Algoritam</a>
+                        </li>
+                        <li class="footer-list-item">
+                            <a href="https://algora.petlja.org/c/petlja">Petlja</a>
+                        </li>
+                        <li class="footer-list-item">
+                            <a href="https://algora.petlja.org/c/zbornica">Zbornica</a>
+                        </li>
+                        <li class="footer-list-item">
+                            <a href="https://algora.petlja.org/c/ostalo">Ostalo</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-xl-2 col-md-4 mt-5 d-none d-lg-block d-xl-block">
+                    <ul class="list-unstyled light-gray p-3">
+                        <li class="footer-list-title font-weight-bold mb-2">O nama</li>
+                        <li class="footer-list-item">
+                            <a href="/petlja/fondacija">Fondacija Petlja</a>
+                        </li>
+                        <li class="footer-list-item">
+                            <a href="/petlja/tim">Tim Petlje</a>
+                        </li>
+                        <li class="footer-list-item">
+                            <a href="/petlja/podrska">Podrška</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-12 col-sm-8 clearfix mt-1">
+                    <address class="white p-3 small">
+                        <img class="mb-2" src="/images/img/logo.png" width="100px" height="auto" alt="Petlja.org">
+                        <br>
+                        <b>Fondacija Petlja</b>
+                        <br>
+                        <a href="mailto:loop@petlja.org">loop@petlja.org</a>
+                    </address>
+                </div>
+
+
+
+            </div>
+            <div class="row">
+                <div class="col-6 clearfix mb-1">
+                    <small class="gray float-left text-right p-3">© Copyright 2018. Petlja.org</small>
+
+                </div>
+                <div class="col-6 clearfix mb-1">
+                    <small class="gray float-right text-right p-3">Graficki dizajn <strong><a href="https://www.enjoying.rs" style="color: #fff;">enjoy.ing</a></strong></small>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</footer>
+       
+        <script>
+            if (window.location.hash == '#_=_') {
+                window.location.hash = ''; // for older browsers, leaves a # behind
+                history.pushState('', document.title, window.location.pathname); // nice and clean
+                e.preventDefault(); // no page reload
+            }
+</script>
+
+<script>
+        (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-102292461-1', 'auto');
+        ga('send', 'pageview');
+
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js">
+    </script>
+<script>(window.jQuery||document.write("\u003Cscript src=\u0022\/lib\/jquery\/dist\/jquery.min.js\u0022\u003E\u003C\/script\u003E"));</script>
+    <script src="/lib/bootstrap4/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/modal.js"></script>
+    <script src="/js/swiper.min.js"></script>
+    <script src="/js/setswiper.js"></script>
+    <script src="/js/bootstrapToggleIni.js"></script>
+    <script src="/js/site.min.js?v=i47omUfFcuT2JI99GWz0GXlXfTAV0t5-C0RAllFf90g"></script>
+    <script src="/js/token.min.js?v=PFbVoTJuQQCZPH8shDrmlZHdeaDobRduO98AsIVgPTE"></script>
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+        integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+        crossorigin="anonymous"></script>
+        
+
+    <script id="infoPanelTmpl" type="text/x-jsrender">
+
+
+        <button type="button" class="btn btn-outline-dark info-btn" onclick="javascript:openInfoModal(0, 'info-content')">Info</button>
+        <div class="card my-3 info-modal" id="info-content" onclick="javascript: hideInfoModals();">
+            <h6 class="card-title">Info</h6>
+            <p class="card-text">
+                Pokušalo:<strong class="float-right">{{:distinctUsersTried}}</strong><br>
+                Rešilo:<strong class="float-right">{{:distinctUsersSolvedPercent}}%</strong><br>
+                    <a href="#solution">Rešenje</a><br>
+            </p>
+        </div>
+        <button type="button" class="btn btn-outline-dark info-btn" onclick="javascript:openInfoModal(2, 'solved-solutions-content')">Problem rešili</button>
+        <div class="card my-3 info-modal" id="solved-solutions-content" onclick="javascript: hideInfoModals();">
+            <h6 class="card-title">Problem rešili</h6>
+            <p class="card-text text-info">
+                {{if usersThatSolvedProblem.length > 0}}
+                {{:usersThatSolvedProblem}}
+                {{else}}
+                Problem nije rešen
+                {{/if}}
+            </p>
+
+        </div>
+        {{if distinctUsersTried > 0}}
+        <button type="button" class="btn btn-outline-dark info-btn" onclick="javascript:openInfoModal(3, 'statistics-content')">Statistika po jeziku</button>
+        <div class="card my-3 info-modal" id="statistics-content" onclick="javascript: hideInfoModals();">
+            <div class="card-header">
+                Statistika po jeziku
+            </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr class="centerrows">
+                        <th>Jezik</th>
+                        <th>Pokušalo</th>
+                        <th>Rešilo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{for languages}}
+                    {{if distinctUsersTriedInLanguage > 0}}
+                    <tr>
+                        <td>{{:language}}</td>
+                        <td>{{:distinctUsersTriedInLanguage}}</td>
+                        <td>{{:distinctUsersSolvedInLanguagePercent}}%</td>
+                    </tr>
+                    {{/if}}
+                    {{/for}}
+                </tbody>
+            </table>
+            {{/if}}
+        </div>
+    </script>
+
+    <script id="submissionsPanelTmpl" type="text/x-jsrender">
+        {{if submissions.length > 0}}
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr class="centerrows">
+                    <th>#</th>
+                    <th>Vreme</th>
+                    <th>Rezultat</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {{for submissions}}
+                <tr class="centerrows">
+                    <td>{{:#index+1}}</td>
+                    <td>{{:~formatDate(submitted)}}</td>
+                    <td><span class="badge badge-{{:statusClass}}">{{:status}}</span></td>
+                    <td>
+                        <a class="float-right btn btn-info btn-sm" href="/download/source/{{:id}}"><i class="fa fa-download"></i></a>
+                        {{if status != '?' ~index=#index}}
+                        <a href="#" data-index="{{:~index}}" class="btn btn-primary btn-sm history-item"><i class="fa fa-search" aria-hidden="true"></i></a>
+                        {{/if}}
+                    </td>
+                </tr>
+                {{/for}}
+            </tbody>
+        </table>
+        {{else}}
+        <small>Nema poslatih rešenja</small>
+        {{/if}}
+    </script>
+
+    <script id="dialogDetailsHasCompiledTmpl" type="text/x-jsrender">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header d-flex justify-content-between">
+                    <h5 class="modal-title">
+                        Rezultat <span class="text-muted"><i class="fa fa-clock" aria-hidden="true"></i></span><span class="text-muted" data-date="{{:submitted}}"> </span>
+                    </h5>
+                    <h5><span class="badge badge-lg badge-{{:statusClass}}">{{:status}}</span></h5>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr class="centerrows">
+                                <td>#</td>
+                                <td>Status</td>
+                                <td>Vreme</td>
+                                <td>Memorija</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{for testCases}}
+                            <tr class="centerrows">
+                                <td>{{:ordinal}}</td>
+                                <td><span class="badge {{:statusClass}}">{{:status}}</span></td>
+                                <td>{{:time}}</td>
+                                <td>{{:memory}}</td>
+                            </tr>
+                            {{/for}}
+                        </tbody>
+                    </table>
+                </div>
+                <div id="sourceCode" class="d-none">
+                    <pre><code>{{:source}}</code></pre>
+                </div>
+                <div class="modal-footer d-flex justify-content-between">
+                    <span class="btn btn-info btn-sm" id="loadSourceCode"><i class="fa fa-code" aria-hidden="true"></i> Izvorni kod</span>
+                    <button class="btn btn-default btn-sm" data-dismiss="modal">Zatvori</button>
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <script id="dialogDetailsHasNotCompiledTmpl" type="text/x-jsrender">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header d-flex justify-content-between">
+                    <h5 class="modal-title">
+                        Rezultat <span class="text-muted"><i class="fa fa-clock" aria-hidden="true"></i></span><span class="text-muted" data-date="{{:submitted}}"> </span>
+                    </h5>
+                    <h5><span class="badge badge-lg badge-{{:statusClass}}">{{:status}}</span></h5>
+                </div>
+                <div class="modal-body">
+                    <div class="well"><pre style="white-space:pre-line;">{{:compilerError}}</pre></div>
+
+                </div>
+                <div id="sourceCode" class="d-none">
+                    <pre><code>{{:source}}</code></pre>
+                </div>
+                <div class="modal-footer d-flex justify-content-between">
+                    <span class="btn btn-info btn-sm" id="loadSourceCode"><i class="fa fa-code" aria-hidden="true"></i> Izvorni kod</span>
+                    <button class="btn btn-default btn-sm" data-dismiss="modal">Zatvori</button>
+                </div>
+            </div>
+        </div>
+
+    </script>
+
+    <script>
+        var  root = {"toExpand":["L124801","1"],"tree":[{"nodes":[{"nodes":[{"nodes":null,"text":"Trotoar","id":128957,"uniqueId":"P128957","displayAlias":"/biblioteka/r/problemi/takmicenja-srednje-skole/01_trotoar"},{"nodes":null,"text":"Papir, kamen, makaze","id":128958,"uniqueId":"P128958","displayAlias":"/biblioteka/r/problemi/takmicenja-srednje-skole/02_papir_kamen_makaze"},{"nodes":null,"text":"Kul kule","id":128959,"uniqueId":"P128959","displayAlias":"/biblioteka/r/problemi/takmicenja-srednje-skole/03_kul_kule"},{"nodes":null,"text":"Filozof","id":128960,"uniqueId":"P128960","displayAlias":"/biblioteka/r/problemi/takmicenja-srednje-skole/04_filozof"},{"nodes":null,"text":"Sportski centar","id":128961,"uniqueId":"P128961","displayAlias":"/biblioteka/r/problemi/takmicenja-srednje-skole/05_sportski_centar"},{"nodes":null,"text":"Kružna škola","id":128962,"uniqueId":"P128962","displayAlias":"/biblioteka/r/problemi/takmicenja-srednje-skole/06_kruzna_skola"}],"text":"Prva runda kvalifikacija 2017","id":124797,"uniqueId":"L124797","displayAlias":"/biblioteka/r/lekcije/takmicenja-srednje-skole/2017/kval1"},{"nodes":[{"nodes":null,"text":"Krompir","id":128963,"uniqueId":"P128963","displayAlias":"/biblioteka/r/problemi/takmicenja-srednje-skole/01_krompir"},{"nodes":null,"text":"Raketa","id":128964,"uniqueId":"P128964","displayAlias":"/biblioteka/r/problemi/takmicenja-srednje-skole/02_raketa"},{"nodes":null,"text":"Marsovci","id":128965,"uniqueId":"P128965","displayAlias":"/biblioteka/r/problemi/takmicenja-srednje-skole/03_marsovci"},{"nodes":null,"text":"Baza","id":128966,"uniqueId":"P128966","displayAlias":"/biblioteka/r/problemi/takmicenja-srednje-skole/04_baza"},{"nodes":null,"text":"Kosmodrom","id":128967,"uniqueId":"P128967","displayAlias":"/biblioteka/r/problemi/takmicenja-srednje-skole/05_kosmodrom"},{"nodes":null,"text":"Mingo","id":128968,"uniqueId":"P128968","displayAlias":"/biblioteka/r/problemi/takmicenja-srednje-skole/06_mingo"}],"text":"Okružno 2017","id":124798,"uniqueId":"L124798","displayAlias":"/biblioteka/r/lekcije/takmicenja-srednje-skole/2017/okruzno"},{"nodes":[{"nodes":null,"text":"Bond","id":128969,"uniqueId":"P128969","displayAlias":"/biblioteka/r/problemi/takmicenja-srednje-skole/01_bond"},{"nodes":null,"text":"Hari","id":128970,"uniqueId":"P128970","displayAlias":"/biblioteka/r/problemi/takmicenja-srednje-skole/02_hari"},{"nodes":null,"text":"Kladionica","id":128971,"uniqueId":"P128971","displayAlias":"/biblioteka/r/problemi/takmicenja-srednje-skole/03_kladionica"},{"nodes":null,"text":"Karibi","id":128972,"uniqueId":"P128972","displayAlias":"/biblioteka/r/problemi/takmicenja-srednje-skole/04_karibi"},{"nodes":null,"text":"Prorok","id":128973,"uniqueId":"P128973","displayAlias":"/biblioteka/r/problemi/takmicenja-srednje-skole/05_prorok"},{"nodes":null,"text":"Karte","id":128974,"uniqueId":"P128974","displayAlias":"/biblioteka/r/problemi/takmicenja-srednje-skole/06_karte"}],"text":"Državno 2017","id":124799,"uniqueId":"L124799","displayAlias":"/biblioteka/r/lekcije/takmicenja-srednje-skole/2017/drzavno"},{"nodes":[{"nodes":null,"text":"Klikeri","id":128975,"uniqueId":"P128975","displayAlias":"/biblioteka/r/problemi/takmicenja-srednje-skole/01_klikeri"},{"nodes":null,"text":"Zaduženja","id":128976,"uniqueId":"P128976","displayAlias":"/biblioteka/r/problemi/takmicenja-srednje-skole/02_zaduzenja"},{"nodes":null,"text":"Tetke","id":128977,"uniqueId":"P128977","displayAlias":"/biblioteka/r/problemi/takmicenja-srednje-skole/03_tetke"},{"nodes":null,"text":"Virus","id":128979,"uniqueId":"P128979","displayAlias":"/biblioteka/r/problemi/takmicenja-srednje-skole/05_virus"},{"nodes":null,"text":"Pogled","id":128980,"uniqueId":"P128980","displayAlias":"/biblioteka/r/problemi/takmicenja-srednje-skole/06_pogled"}],"text":"SIO 2017","id":124800,"uniqueId":"L124800","displayAlias":"/biblioteka/r/lekcije/takmicenja-srednje-skole/2017/sio"}],"text":"2017","id":0,"uniqueId":"0","displayAlias":null},{"nodes":[{"nodes":[{"nodes":null,"text":"Prva cifra","id":128981,"uniqueId":"P128981","displayAlias":"/biblioteka/r/problemi/takmicenja-srednje-skole/01_prva_cifra"},{"nodes":null,"text":"Transformacija matrice","id":128982,"uniqueId":"P128982","displayAlias":"/biblioteka/r/problemi/takmicenja-srednje-skole/02_transformacija_matrice"},{"nodes":null,"text":"Prodavnice","id":128983,"uniqueId":"P128983","displayAlias":"/biblioteka/r/problemi/takmicenja-srednje-skole/03_prodavnice"},{"nodes":null,"text":"Okrnjen trougao","id":128984,"uniqueId":"P128984","displayAlias":"/biblioteka/r/problemi/takmicenja-srednje-skole/04_okrnjen_trougao"},{"nodes":null,"text":"Nagrade","id":128985,"uniqueId":"P128985","displayAlias":"/biblioteka/r/problemi/takmicenja-srednje-skole/05_nagrade"}],"text":"Prva runda kvalifikacija 2018","id":124801,"uniqueId":"L124801","displayAlias":"/biblioteka/r/lekcije/takmicenja-srednje-skole/2018/kval1"},{"nodes":[{"nodes":null,"text":"Mala matrica","id":128986,"uniqueId":"P128986","displayAlias":"/biblioteka/r/problemi/takmicenja-srednje-skole/01_mala_matrica"},{"nodes":null,"text":"Trivijalan broj","id":128987,"uniqueId":"P128987","displayAlias":"/biblioteka/r/problemi/takmicenja-srednje-skole/02_trivijalan_broj"},{"nodes":null,"text":"Topla voda","id":128988,"uniqueId":"P128988","displayAlias":"/biblioteka/r/problemi/takmicenja-srednje-skole/03_topla_voda"},{"nodes":null,"text":"Džokeri","id":128989,"uniqueId":"P128989","displayAlias":"/biblioteka/r/problemi/takmicenja-srednje-skole/04_dzokeri"},{"nodes":null,"text":"Kiosci","id":128990,"uniqueId":"P128990","displayAlias":"/biblioteka/r/problemi/takmicenja-srednje-skole/05_kiosci"}],"text":"Druga runda kvalifikacija 2018","id":124802,"uniqueId":"L124802","displayAlias":"/biblioteka/r/lekcije/takmicenja-srednje-skole/2018/kval2"},{"nodes":[{"nodes":null,"text":"Zečevi","id":129094,"uniqueId":"P129094","displayAlias":"/biblioteka/r/problemi/takmicenja-srednje-skole/01_zecevi"},{"nodes":null,"text":"Najbliži neopadajući","id":129095,"uniqueId":"P129095","displayAlias":"/biblioteka/r/problemi/takmicenja-srednje-skole/02_najblizi_neopadajuci"},{"nodes":null,"text":"Struja","id":129096,"uniqueId":"P129096","displayAlias":"/biblioteka/r/problemi/takmicenja-srednje-skole/03_struja"},{"nodes":null,"text":"Plus-minus","id":129097,"uniqueId":"P129097","displayAlias":"/biblioteka/r/problemi/takmicenja-srednje-skole/04_plus_minus"},{"nodes":null,"text":"Prepisivanje","id":129098,"uniqueId":"P129098","displayAlias":"/biblioteka/r/problemi/takmicenja-srednje-skole/05_prepisivanje"}],"text":"Treća runda kvalifikacija 2018","id":124803,"uniqueId":"L124803","displayAlias":"/biblioteka/r/lekcije/takmicenja-srednje-skole/2018/kval3"},{"nodes":[{"nodes":null,"text":"Pangram","id":129123,"uniqueId":"P129123","displayAlias":"/biblioteka/r/problemi/takmicenja-srednje-skole/01_pangram"},{"nodes":null,"text":"Matriks","id":129124,"uniqueId":"P129124","displayAlias":"/biblioteka/r/problemi/takmicenja-srednje-skole/02_matriks"},{"nodes":null,"text":"Žalbe","id":129125,"uniqueId":"P129125","displayAlias":"/biblioteka/r/problemi/takmicenja-srednje-skole/03_zalbe"},{"nodes":null,"text":"cik_cak","id":129126,"uniqueId":"P129126","displayAlias":"/biblioteka/r/problemi/takmicenja-srednje-skole/04_cik_cak"},{"nodes":null,"text":"Velika Matrica","id":129127,"uniqueId":"P129127","displayAlias":"/biblioteka/r/problemi/takmicenja-srednje-skole/05_velika_matrica"},{"nodes":null,"text":"Formula","id":129128,"uniqueId":"P129128","displayAlias":"/biblioteka/r/problemi/takmicenja-srednje-skole/06_formula"}],"text":"Okružno 2018","id":124804,"uniqueId":"L124804","displayAlias":"/biblioteka/r/lekcije/takmicenja-srednje-skole/2018/okruzno"},{"nodes":[{"nodes":null,"text":"Pola-pola","id":129225,"uniqueId":"P129225","displayAlias":"/biblioteka/r/problemi/takmicenja-srednje-skole/01_polapola"},{"nodes":null,"text":"Trik","id":129226,"uniqueId":"P129226","displayAlias":"/biblioteka/r/problemi/takmicenja-srednje-skole/02_trik"},{"nodes":null,"text":"Esikez","id":129227,"uniqueId":"P129227","displayAlias":"/biblioteka/r/problemi/takmicenja-srednje-skole/03_esikez"},{"nodes":null,"text":"Super velika matrica","id":129228,"uniqueId":"P129228","displayAlias":"/biblioteka/r/problemi/takmicenja-srednje-skole/04_super_velika"},{"nodes":null,"text":"Sort na stablu","id":129229,"uniqueId":"P129229","displayAlias":"/biblioteka/r/problemi/takmicenja-srednje-skole/05_sort_na_stablu"},{"nodes":null,"text":"Obaranje","id":129230,"uniqueId":"P129230","displayAlias":"/biblioteka/r/problemi/takmicenja-srednje-skole/06_obaranje"}],"text":"Državno 2018","id":124805,"uniqueId":"L124805","displayAlias":"/biblioteka/r/lekcije/takmicenja-srednje-skole/2018/drzavno"},{"nodes":[{"nodes":null,"text":"Imanje","id":129330,"uniqueId":"P129330","displayAlias":"/biblioteka/r/problemi/takmicenja-srednje-skole/02_imanje"},{"nodes":null,"text":"Pacovi","id":129329,"uniqueId":"P129329","displayAlias":"/biblioteka/r/problemi/takmicenja-srednje-skole/01_pacovi"},{"nodes":null,"text":"Popis","id":129331,"uniqueId":"P129331","displayAlias":"/biblioteka/r/problemi/takmicenja-srednje-skole/03_popis"},{"nodes":null,"text":"Bombonice","id":129332,"uniqueId":"P129332","displayAlias":"/biblioteka/r/problemi/takmicenja-srednje-skole/04_bombonice"},{"nodes":null,"text":"Voćnjak","id":129333,"uniqueId":"P129333","displayAlias":"/biblioteka/r/problemi/takmicenja-srednje-skole/05_vocnjak"},{"nodes":null,"text":"Taman","id":129334,"uniqueId":"P129334","displayAlias":"/biblioteka/r/problemi/takmicenja-srednje-skole/06_taman"}],"text":"Srpska informatička olimpijada 2018","id":124806,"uniqueId":"L124806","displayAlias":"/biblioteka/r/lekcije/takmicenja-srednje-skole/2018/sio"}],"text":"2018","id":1,"uniqueId":"1","displayAlias":null}]};
+    </script>
+
+    <script id="doneTmpl" type="text/x-jsrender">
+        <span style="cursor: pointer;" data-index="0" class="history-item badge badge-{{:statusClass}}">{{:status}}</span>
+    </script>
+
+    <script id="problemSolutionTmpl" type="text/x-jsrender">
+        <div class="col-md-12 course-box section" data-item="solution">
+            <div class="col-md-12 course-content">
+                <h4 class="course-title">
+                    Rešenje
+                </h4>
+                {{:problemSolution}}
+            </div>
+        </div>
+    </script>
+
+    <script type="text/javascript" charset="utf-8">
+            var viewModel = {"problemId":128982,"problemName":"Transformacija matrice"};
+    </script>
+
+    <script src="/lib/ace-builds/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/cpp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/cs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/python.min.js"></script>
+
+    <script src="/lib/moment/min/moment-with-locales.min.js" type="text/javascript" charset="utf-8"></script>
+
+    
+    
+        <script src="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/js/gijgo.min.js" type="text/javascript"></script>
+            <script src="/js/course.min.js?v=LT3aiX-R8Vdgh_8tVQ-eQO-tyxx5W7jZli-wbqhd1TU"></script>
+            <script src="/js/lecture.min.js?v=P3lVshHF6pMqNSHB8pKCdzdljjlCqj4-pF6_AqRAm2I"></script>
+        <script src="/js/problem.min.js?v=g8IzNQEO_YrgFNFI8U4IoC7MAcJI8jbhc06VRqmY6h8"></script>
+
+        <script src="/lib/jsrender/jsrender.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="/lib/jszip/dist/jszip.min.js" type="text/javascript" charset="utf-8"></script>
+    
+
+    </body>
+</html>

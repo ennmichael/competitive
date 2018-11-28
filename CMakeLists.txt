@@ -39,6 +39,12 @@ add_debug_options(problem_ciode)
 add_executable(problem_rubik problems/rubik-2009-opstinsko/rubik.cpp)
 add_debug_options(problem_rubik)
 
+add_executable(problem_prva_cifra problems/prva-cifra-2018-kvalifikacije/prva_cifra.cpp)
+add_debug_options(problem_prva_cifra)
+
+add_executable(problem_transformacija_matrice problems/transformacija-matrice-2018-kvalifikacije/transformacija_matrice.cpp)
+add_debug_options(problem_transformacija_matrice)
+
 add_executable(check_stirling library/check_stirling.cpp)
 add_optimized_options(check_stirling)
 
