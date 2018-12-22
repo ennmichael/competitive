@@ -6,7 +6,7 @@ using namespace Competitive;
 
 using ID = int;
 
-using IDGraph = Graph<ID>;
+using IDGraph = AdjacencyList<ID>;
 
 using Neighbours = IDGraph::Neighbours;
 

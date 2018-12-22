@@ -10,8 +10,8 @@
 namespace Competitive {
 namespace AStar {
 
-    template <class Graph, class HeuristicFunction>
-    Path find_path(Graph const& graph, std::size_t start, std::size_t end, HeuristicFunction const& h)
+    template <class AdjacencyList, class HeuristicFunction>
+    Path find_path(AdjacencyList const& graph, std::size_t start, std::size_t end, HeuristicFunction const& h)
     {
         using Heuristic = decltype(h(graph, start, std::size_t {}));
 

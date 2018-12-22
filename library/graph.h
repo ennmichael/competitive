@@ -7,8 +7,7 @@
 namespace Competitive {
 
     template <class NodeData>
-    struct Graph {
-
+    struct AdjacencyList {
         using Nodes = std::vector<NodeData>;
 
         using Neighbours = std::vector<std::size_t>;
@@ -18,9 +17,45 @@ namespace Competitive {
         Nodes nodes;
         Arcs arcs;
 
-        Neighbours neighbours(std::size_t node) const noexcept
+        Neighbours neighbours(std::size_t node) const
         {
             return (arcs.count(node)) ? arcs.at(node) : Neighbours {};
+        }
+
+        bool are_neighbours(std::size_t node, std::size_t neighbour) const
+        {
+            auto const neighbours = this->neighbours(node);
+            return std::find(neighbours.cbegin(), neighbours.cend(), node) != neighbours.cend();
+        }
+    };
+
+    template <class NodeData>
+    struct AdjacencyMatrix {
+        using Nodes = std::vector<NodeData>;
+
+        using Neighbours = std::vector<std::size_t>;
+
+        using Matrix = std::vector<std::vector<int>>;
+
+        Nodes nodes;
+        Matrix matrix;
+
+        Neighbours neighbours(std::size_t node) const
+        {
+            Neighbours result;
+            auto const& row = matrix.at(node);
+            for (std::size_t i = 0; i < row.size(); ++i)
+            {
+                if (row.at(i))
+                    result.push_back(i);
+            }
+            return result;
+        }
+
+
+        bool are_neighbours(std::size_t node, std::size_t neighbour) const
+        {
+            return matrix.at(node).at(neighbour);
         }
     };
 

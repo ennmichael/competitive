@@ -13,7 +13,7 @@ namespace BreadthFirst {
     {
         // Open nodes (nodes in the open_nodes set) are conceptually doing the search.
         // Once an open node neighbours the end node, the search is finished.
-        // Closed nodes (nodes in the closed_nodes set) are have already been
+        // Closed nodes (nodes in the closed_nodes set) have already been
         // searched through. The open_nodes set keeps spreading through the tree structure
         // until either we run out of nodes or the end node is found. With each step,
         // the open set is extended in such a manner that each node previously in the
@@ -24,7 +24,7 @@ namespace BreadthFirst {
         // For non-grid graphs, it's how one could imagine a virus spreading.
         //
         // OpenNodes is a queue so we easily process the nodes one-by-one. It could also
-        // be a vector, but that vector would need to get copied and clear a bunch. Using a
+        // be a vector, but that vector would need to get copied and cleared a bunch. Using a
         // queue achieves the same purpose more efficiently.
 
         using OpenNodes = std::deque<std::size_t>;

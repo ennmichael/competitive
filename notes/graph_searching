@@ -1,6 +1,0 @@
-Breadth-first search is the easiest to implement (and also the worst).
-If you only need to know a path exists from one node to another,
-use Best-first greedy search (Breadth-first + heuristic). It's
-faster and simpler than A*, but doesn't always yield the shortest path (which doesn't
-matter in the case on checking for the sole existence of a path).
-If you need the actual shortest path, use A*. PERIOD. This is industry standard.

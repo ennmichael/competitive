@@ -45,6 +45,24 @@ add_debug_options(problem_prva_cifra)
 add_executable(problem_transformacija_matrice problems/transformacija-matrice-2018-kvalifikacije/transformacija_matrice.cpp)
 add_debug_options(problem_transformacija_matrice)
 
+add_executable(problem_prodavnice problems/prodavnice-2018-kvalifikacije/prodavnice.cpp)
+add_debug_options(problem_prodavnice)
+
+# add_executable(problem_nagrade problems/nagrade-2018-kvalifikacije/nagrade.cpp)
+# add_debug_options(problem_nagrade)
+
+add_executable(problem_mala_matrica problems/mala-matrica-2018-kvalifikacije/mala_matrica.cpp)
+add_debug_options(problem_mala_matrica)
+
+add_executable(problem_trivijalan_broj problems/trivijalan-broj-2018-kvalifikacije/trivijalan_broj.cpp)
+add_debug_options(problem_trivijalan_broj)
+
+add_executable(problem_topla_voda problems/topla-voda-2018-kvalifikacije/topla_voda.cpp)
+add_debug_options(problem_topla_voda)
+
+add_executable(problem_najblizi_neopadajuci problems/najblizi-neopadajuci-2018-kvalifikacije/najblizi_neopadajuci.cpp)
+add_debug_options(problem_najblizi_neopadajuci)
+
 add_executable(check_stirling library/check_stirling.cpp)
 add_optimized_options(check_stirling)
 

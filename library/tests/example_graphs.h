@@ -5,10 +5,10 @@
 
 using namespace Competitive;
 
-struct ExampleGraph {
-    using HeuristicFunction = std::function<int(Graph<int> const&, std::size_t, std::size_t)>;
+struct ExampleAdjacencyList {
+    using HeuristicFunction = std::function<int(AdjacencyList<int> const&, std::size_t, std::size_t)>;
 
-    Graph<int> graph;
+    AdjacencyList<int> graph;
     int start;
     int end;
     HeuristicFunction heuristic_function;
@@ -16,7 +16,7 @@ struct ExampleGraph {
     Path heuristic_path;
 };
 
-inline float heuristic_function_1(Graph<int> const&, std::size_t from, std::size_t to)
+inline float heuristic_function_1(AdjacencyList<int> const&, std::size_t from, std::size_t to)
 {
     if (to != 9)
         throw std::runtime_error {"Incorrect to argument"};
@@ -35,9 +35,9 @@ inline float heuristic_function_1(Graph<int> const&, std::size_t from, std::size
     throw std::runtime_error {"Incorrect from argument"};
 }
 
-inline ExampleGraph solvable_graph_1()
+inline ExampleAdjacencyList solvable_graph_1()
 {
-    Graph<int> graph;
+    AdjacencyList<int> graph;
     for (int i = 0; i < 10; ++i)
         graph.nodes.push_back(i);
     graph.arcs.insert({0, {1}});
@@ -57,7 +57,7 @@ inline ExampleGraph solvable_graph_1()
     };
 }
 
-inline float heuristic_function_2(Graph<int> const&, std::size_t from, std::size_t to)
+inline float heuristic_function_2(AdjacencyList<int> const&, std::size_t from, std::size_t to)
 {
     if (to != 6)
         throw std::runtime_error {"Incorrect to argument"};
@@ -73,9 +73,9 @@ inline float heuristic_function_2(Graph<int> const&, std::size_t from, std::size
     throw std::runtime_error {"Incorrect from argument"};
 }
 
-inline ExampleGraph solvable_graph_2()
+inline ExampleAdjacencyList solvable_graph_2()
 {
-    Graph<int> graph;
+    AdjacencyList<int> graph;
     for (int i = 0; i < 7; ++i)
         graph.nodes.push_back(i);
     graph.arcs.insert({0, {1, 4}});
@@ -93,9 +93,9 @@ inline ExampleGraph solvable_graph_2()
     };
 }
 
-inline ExampleGraph unsolvable_graph_1()
+inline ExampleAdjacencyList unsolvable_graph_1()
 {
-    Graph<int> graph;
+    AdjacencyList<int> graph;
     for (int i = 0; i < 10; ++i)
         graph.nodes.push_back(i);
     graph.arcs.insert({0, {1}});
@@ -113,9 +113,9 @@ inline ExampleGraph unsolvable_graph_1()
     };
 }
 
-inline ExampleGraph unsolvable_graph_2()
+inline ExampleAdjacencyList unsolvable_graph_2()
 {
-    Graph<int> graph;
+    AdjacencyList<int> graph;
     for (int i = 0; i < 7; ++i)
         graph.nodes.push_back(i);
     graph.arcs.insert({0, {1, 4}});
