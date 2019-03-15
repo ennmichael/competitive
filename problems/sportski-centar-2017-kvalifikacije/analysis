@@ -1,0 +1,23 @@
+First is a useful trick: when calculating the area of triangles (using cross product), keep the area doubled.
+This way floating point arithmetic won't be used, and also no new problems will be imposed.
+
+A divide and conquer approach:
+
+Take each pair of points. Construct a line between them. This line will serve as the diagonal
+for the quadrilateral, i.e. the common side of the two triangles. Now divide all other points
+into two sets: the set of leftmost and rightmost points. This is done by checking the cross product
+sign (using cross product between the diagonal vector and the vector construced from diagonal origin
+into the point being checked. The origin of the diagonal can be either point which constructs the line,
+but it must stay fixed during the algorithm. Pick one of them as origin and stick with it.)
+
+Now that we have the two sets of points, we calculate the (doubled) triangle areas for each point in each set.
+We sort the triangle areas, keeping track of the point that makes the triangle for each area sorted.
+In practice, we'd put the area and the point into a struct, and sort two collections of those structs
+by the area value. Notice that we sort the leftmost and the rightmost collections separately.
+
+Once we have that, take two pointers: one pointing to the start of the collection of leftmost points (and areas),
+other pointing to the end of the collection of rightmost points (and areas). Keep a running sum of areas (i.e. the rectangle
+area). Whenever the running sum is larger than the expected value, decrement the rightmost pointer. Whenever the
+running sum is lower than the expected value, increment the leftmost pointer. Also keep track of the running sum which is
+closest to the expected value. After both pointers have been moved all the way, the sum which is closest to the
+expected value is the solution. Remember to halve it before printing it out.
