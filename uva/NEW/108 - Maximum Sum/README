@@ -1,0 +1,4 @@
+Notes:
+Though the problem states that there will be just one input, we've added several to help with testing.
+There is the size of the square, N, followed by N^2 integers.
+And this pattern repeats itself until EOF.
