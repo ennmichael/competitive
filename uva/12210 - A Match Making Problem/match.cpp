@@ -15,37 +15,22 @@ Iter closer(Iter a, Iter b, int value)
     return b;
 }
 
-std::vector<int>::const_iterator solve(std::vector<int>& bachelors, std::vector<int>& spinsters)
+void solve(std::vector<int>& bachelors, std::vector<int>& spinsters, int test_case)
 {
     if (bachelors.size() <= spinsters.size())
     {
-        return bachelors.cend();
+        std::cout << "Case " << test_case << ": 0\n";
+        return;
     }
 
-    std::sort(bachelors.begin(), bachelors.end(), [](int left, int right) { return left > right; });
-    std::sort(spinsters.begin(), spinsters.end());
+    std::nth_element(
+        bachelors.begin(), bachelors.begin() + spinsters.size(), bachelors.end(),
+        [](int left, int right) { return left > right; }
+    );
 
-    auto bachelor = bachelors.cbegin();
-    for (; bachelor != bachelors.cend(); ++bachelor)
-    {
-        auto const i = std::lower_bound(spinsters.begin(), spinsters.end(), *bachelor);
-
-        if (i == spinsters.end())
-        {
-            break;
-        }
-
-        if (i == spinsters.begin() || std::abs(*i - *bachelor) < std::abs(*(i - 1) - *bachelor))
-        {
-            spinsters.erase(i);
-        }
-        else
-        {
-            spinsters.erase(i - 1);
-        }
-    }
-
-    return bachelor;
+    std::cout << "Case " << test_case << ": "
+              << bachelors.size() - spinsters.size()
+              << ' ' << bachelors[spinsters.size()] << '\n';
 }
 
 int main()
@@ -80,17 +65,6 @@ int main()
             std::cin >> spinster;
         }
 
-        auto const bachelor = solve(bachelors, spinsters);
-
-        if (bachelor == bachelors.cend())
-        {
-            std::cout << "Case " << test_case << ": 0\n";
-        }
-        else
-        {
-            std::cout << "Case " << test_case << ": "
-                      << std::distance(bachelor, bachelors.cend())
-                      << ' ' << *bachelor << '\n';
-        }
+        solve(bachelors, spinsters, test_case);
     }
 }
