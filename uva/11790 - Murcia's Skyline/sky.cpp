@@ -17,62 +17,64 @@ using Minimums = std::vector<std::size_t>;
 using WidthTable = std::unordered_map<std::size_t, int>;
 
 template <class Compare>
-int find_longest_width(Buildings const& buildings, Compare const& compare)
+long long find_j(Buildings const& buildings, std::vector<int> const& max_widths, std::size_t i, Compare const& compare)
 {
-    Minimums minimums;
-    WidthTable width_table;
+    long long result = -1;
+    int max_width = -1;
 
-    for (std::size_t building_index = 0; building_index < buildings.size(); ++building_index)
+    for (std::size_t j = 0; j < i; ++j)
     {
-        auto const& building = buildings[building_index];
-        auto const minimum = std::lower_bound(minimums.begin(), minimums.end(), building.height,
-            [&](std::size_t left, int right)
-            {
-                return compare(buildings[left].height, right);
-            }
-        );
-
-        if (minimum == minimums.begin())
+        if (!compare(buildings[j].height, buildings[i].height))
         {
-            width_table.emplace(building_index, building.width);
-        }
-        else
-        {
-            width_table.emplace(building_index, building.width + width_table.at(*(minimum - 1)));
+            continue;
         }
 
-        if (minimum == minimums.end())
+        if (max_widths[j] > max_width)
         {
-            minimums.push_back(building_index);
-        }
-        else
-        {
-            *minimum = building_index;
+            max_width = max_widths[j];
+            result = j;
         }
     }
 
-    return std::max_element(width_table.cbegin(), width_table.cend(),
-        [](WidthTable::value_type const& left, WidthTable::value_type const& right)
+    return result;
+}
+
+template <class Compare>
+int find_max_width(Buildings const& buildings, Compare const& compare)
+{
+    std::vector<int> max_widths(buildings.size());
+    max_widths[0] = buildings.front().width;
+
+    for (std::size_t i = 1; i < buildings.size(); ++i)
+    {
+        auto const j = find_j(buildings, max_widths, i, compare);
+        if (j == -1)
         {
-            return left.second < right.second;
+            max_widths[i] = buildings[i].width;
         }
-    )->second;
+        else
+        {
+            max_widths[i] = max_widths[j] + buildings[i].width;
+        }
+    }
+
+    return *std::max_element(max_widths.cbegin(), max_widths.cend());
 }
 
-int find_longest_increasing_width(Buildings const& buildings)
+int find_increasing_width(Buildings const& buildings)
 {
-    return find_longest_width(buildings, [](int left, int right) { return left < right; });
+    return find_max_width(buildings, [](int left, int right) { return left < right; });
 }
 
-int find_longest_decreasing_width(Buildings const& buildings)
+int find_decreasing_width(Buildings const& buildings)
 {
-    return find_longest_width(buildings, [](int left, int right) { return left > right; });
+    return find_max_width(buildings, [](int left, int right) { return left > right; });
 }
 
 void solve(Buildings const& buildings)
 {
-    auto const increasing = find_longest_increasing_width(buildings);
-    auto const decreasing = find_longest_decreasing_width(buildings);
+    auto const increasing = find_increasing_width(buildings);
+    auto const decreasing = find_decreasing_width(buildings);
 
     if (increasing >= decreasing)
     {
